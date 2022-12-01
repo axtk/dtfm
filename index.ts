@@ -1,5 +1,6 @@
 export * from './src/const';
 export * from './src/format';
+export * from './src/isInvalidDate';
 export * from './src/toLocalISOString';
 export * from './src/toTimeSpan';
 export * from './src/toTimestamp';

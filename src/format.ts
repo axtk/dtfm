@@ -3,6 +3,8 @@ import type {DateValue} from '../types/DateValue';
 import type {DateComponentKey} from '../types/DateComponentKey';
 import type {DateComponents} from '../types/DateComponents';
 import {getDateComponents} from '../lib/getDateComponents';
+import {INVALID_DATE_STRING} from './const';
+import {isInvalidDate} from './isInvalidDate';
 
 type FillTransformMap = Parameters<typeof fill>[2];
 
@@ -11,15 +13,13 @@ export function format(
     dateTemplate: string,
     transformMap?: Partial<Record<DateComponentKey, (dateComponents: DateComponents) => unknown>>,
 ): string {
-    let t = date instanceof Date ? date : new Date(date);
-
-    if (Number.isNaN(t.getTime()))
-        return t.toString();
+    if (isInvalidDate(date))
+        return INVALID_DATE_STRING;
 
     let dateComponents = getDateComponents(date);
 
     if (!dateComponents)
-        return new Date('-').toString(); // invalid date string
+        return INVALID_DATE_STRING;
 
     return fill(dateTemplate, dateComponents, transformMap as FillTransformMap);
 }
