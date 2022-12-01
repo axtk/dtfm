@@ -1,14 +1,15 @@
 import {pad} from 'stfm';
 import type {DateValue} from '../types/DateValue';
 import type {DateComponents} from '../types/DateComponents';
+import {isInvalidDate} from './isInvalidDate';
 
 const {abs, floor, sign} = Math;
 
 export function getDateComponents(date: DateValue): DateComponents | undefined {
-    let d = date instanceof Date ? date : new Date(date);
-
-    if (Number.isNaN(d.getTime()))
+    if (isInvalidDate(date))
         return;
+
+    let d = date instanceof Date ? date : new Date(date);
 
     let Y = String(d.getFullYear());
     let M = pad(d.getMonth() + 1, 2);
