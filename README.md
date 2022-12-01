@@ -1,3 +1,3 @@
 # dtfm
 
-*Date formatting utilities*
+*Locale-agnostic date formatting utilities*

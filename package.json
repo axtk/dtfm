@@ -1,7 +1,7 @@
 {
   "name": "dtfm",
   "version": "0.0.1",
-  "description": "Date formatting utilities",
+  "description": "Locale-agnostic date formatting utilities",
   "main": "dist/index.js",
   "scripts": {
     "build": "cross-env npm run clean && npm run compile",
