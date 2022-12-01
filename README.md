@@ -1,1 +1,3 @@
 # dtfm
+
+*Date formatting utilities*

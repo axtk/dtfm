@@ -1,0 +1,31 @@
+{
+  "name": "dtfm",
+  "version": "0.0.1",
+  "description": "Date formatting utilities",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "cross-env npm run clean && npm run compile",
+    "clean": "node -e \"require('fs').rmSync('dist', {force: true, recursive: true});\"",
+    "compile": "tsc",
+    "prepublishOnly": "npm run build",
+    "preversion": "npm run build",
+    "typecheck": "tsc --noEmit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/axtk/dtfm.git"
+  },
+  "keywords": [
+    "date",
+    "formatting"
+  ],
+  "author": "axtk",
+  "license": "ISC",
+  "devDependencies": {
+    "cross-env": "7.0.3",
+    "typescript": "4.9.3"
+  },
+  "dependencies": {
+    "stfm": "0.0.3"
+  }
+}
