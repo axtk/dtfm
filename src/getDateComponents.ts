@@ -2,6 +2,7 @@ import {pad} from 'stfm';
 import type {DateValue} from '../types/DateValue';
 import type {DateComponents} from '../types/DateComponents';
 import {isInvalidDate} from './isInvalidDate';
+import {weekDays} from './const';
 
 const {abs, floor, sign} = Math;
 
@@ -14,7 +15,7 @@ export function getDateComponents(date: DateValue): DateComponents | undefined {
     let Y = String(d.getFullYear());
     let M = pad(d.getMonth() + 1, 2);
     let D = pad(d.getDate(), 2);
-    let WD = String(d.getDay() + 1);
+    let WD = weekDays[d.getDay()];
 
     let h = pad(d.getHours(), 2);
     let m = pad(d.getMinutes(), 2);

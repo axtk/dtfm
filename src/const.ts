@@ -4,3 +4,4 @@ export const HOUR = 60*MIN;
 export const DAY = 24*HOUR;
 
 export const INVALID_DATE_STRING = new Date('-').toString();
+export const weekDays =  ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
