@@ -31,26 +31,34 @@ export function getDateComponents(date: DateValue, targetTimezone?: string): Dat
     if (targetTzOffset !== undefined)
         tzOffset = targetTzOffset;
 
-    let year = d.getFullYear();
-    let hours = d.getHours();
+    let $Y = d.getFullYear();
+    let $M = d.getMonth();
+    let $D = d.getDate();
+    let $WD = d.getDay();
 
-    let Y = String(year);
-    let M = pad(d.getMonth() + 1, 2);
-    let D = pad(d.getDate(), 2);
-    let WD = weekDays[d.getDay()];
+    let Y = String($Y);
+    let M = pad($M + 1, 2);
+    let D = pad($D, 2);
+    let WD = weekDays[$WD];
 
-    let h = pad(hours, 2);
-    let m = pad(d.getMinutes(), 2);
-    let s = pad(d.getSeconds(), 2);
-    let ms = pad(d.getMilliseconds(), 3);
+    let $h = d.getHours();
+    let $m = d.getMinutes();
+    let $s = d.getSeconds();
+    let $ms = d.getMilliseconds();
+
+    let h = pad($h, 2);
+    let m = pad($m, 2);
+    let s = pad($s, 2);
+    let ms = pad($ms, 3);
 
     // AD 1 = year 1, 1 BC = year 0, 2 BC = year -1, etc.
-    let YE = String(year < 1 ? abs(year - 1) : year);
-    let E: DateComponents['E'] = year < 1 ? 'BC' : 'AD';
-    let CE: DateComponents['CE'] = year < 1 ? 'BCE' : 'CE';
+    let YE = String($Y < 1 ? abs($Y - 1) : $Y);
+    let E: DateComponents['E'] = $Y < 1 ? 'BC' : 'AD';
+    let CE: DateComponents['CE'] = $Y < 1 ? 'BCE' : 'CE';
 
-    let h12 = pad(hours % 12 || 12, 2);
-    let a: DateComponents['a'] = hours < 12 ? 'AM' : 'PM';
+    let $h12 = $h % 12 || 12;
+    let h12 = pad($h12, 2);
+    let a: DateComponents['a'] = $h < 12 ? 'AM' : 'PM';
 
     let tzSign = -sign(tzOffset);
     let absTzOffset = abs(tzOffset);
@@ -68,8 +76,10 @@ export function getDateComponents(date: DateValue, targetTimezone?: string): Dat
 
     return {
         date: d,
-        timestamp: d.getTime(),
+        $t: d.getTime(),
+        $Y, $M, $D, $WD,
         Y, M, D, WD, YE, E, CE,
+        $h, $m, $s, $ms, $h12,
         h, m, s, ms, h12, a, tz,
         isoDate, isoTime, isoTimeMs, iso,
     };
