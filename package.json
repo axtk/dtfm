@@ -1,6 +1,6 @@
 {
   "name": "dtfm",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Locale-agnostic date formatting utilities",
   "main": "dist/index.js",
   "scripts": {
