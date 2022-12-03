@@ -1,5 +1,6 @@
 import {format, FormatTemplate} from './src/format';
-import {weekDays, months} from './src/const';
+import {toTimeSpan} from './src/toTimeSpan';
+import {months, DAY, HOUR, MIN} from './src/const';
 
 let k = 0, failed = false;
 
@@ -62,6 +63,15 @@ is(format(-62200000000000, '{$Y}'), '-2');
 
 console.log('transform');
 is(format('2022-12-02T12:34:56.789', '{WD}, {M} {$D}, {Y}', {M: ({$M}) => months[$M]}), 'Fri, Dec 2, 2022');
+
+console.log('span');
+let d = Date.now();
+is(toTimeSpan(d - 5678, d), '5.678"');
+is(toTimeSpan(d - (2*MIN + 5678), d), '2\'05.678"');
+is(toTimeSpan(d, d - (2*MIN + 5678)), '-2\'05.678"');
+is(toTimeSpan(d - (3*HOUR + 7*MIN + 5678), d), '3h07\'05.678"');
+is(toTimeSpan(d - (12*HOUR + 17*MIN + 25678), d), '12h17\'25.678"');
+is(toTimeSpan(d - (2*DAY + 3*HOUR + 17*MIN + 25678), d), '2d03h17\'25.678"');
 
 console.log();
 if (failed) throw new Error('Failed');
