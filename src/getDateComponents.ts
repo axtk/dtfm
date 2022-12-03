@@ -4,7 +4,7 @@ import type {DateComponents} from '../types/DateComponents';
 import {isInvalidDate} from './isInvalidDate';
 import {getTimezone} from './getTimezone';
 import {getTimezoneOffset} from './getTimezoneOffset';
-import {weekDays, MIN} from './const';
+import {weekDays, months, MIN} from './const';
 
 const {abs, floor, sign} = Math;
 
@@ -40,6 +40,7 @@ export function getDateComponents(date: DateValue, targetTimezone?: string): Dat
     let M = pad($M + 1, 2);
     let D = pad($D, 2);
     let WD = weekDays[$WD];
+    let MM = months[$M];
 
     let $h = d.getHours();
     let $m = d.getMinutes();
@@ -78,7 +79,7 @@ export function getDateComponents(date: DateValue, targetTimezone?: string): Dat
         date: d,
         $t: d.getTime(),
         $Y, $M, $D, $WD,
-        Y, M, D, WD, YE, E, CE,
+        Y, M, D, WD, MM, YE, E, CE,
         $h, $m, $s, $ms, $h12,
         h, m, s, ms, h12, a, tz,
         isoDate, isoTime, isoTimeMs, iso,

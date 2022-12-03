@@ -16,6 +16,8 @@ export type DateComponents = {
     $M: number;
     /** Month */
     M: string;
+    /** Month abbreviation */
+    MM: string;
     /** Day */
     $D: number;
     /** Day */
@@ -46,7 +48,7 @@ export type DateComponents = {
     tz: string;
     /** Week day */
     $WD: number;
-    /** Week day */
+    /** Week day abbreviation */
     WD: string;
     /** Local time zone ISO date string */
     iso: string;
