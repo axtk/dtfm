@@ -1,8 +1,19 @@
 import {format, FormatTemplate} from './src/format';
 import {toTimeSpan} from './src/toTimeSpan';
-import {months, DAY, HOUR, MIN} from './src/const';
+import {DAY, HOUR, MIN, weekDays, months} from './src/const';
 
 let k = 0, failed = false;
+
+const customLocale = {
+    weekDays: [
+        'sunnudagur', 'mánudagur', 'þriðjudagur', 'miðvikudagur',
+        'fimmtudagur', 'föstudagur', 'laugardagur',
+    ],
+    months: [
+        'janúar', 'febrúar', 'mars', 'apríl', 'maí', 'júní',
+        'júlí', 'ágúst', 'september', 'október', 'nóvember', 'desember',
+    ],
+};
 
 function is(testedValue: unknown, expectedValue: unknown) {
     let ok = JSON.stringify(testedValue) === JSON.stringify(expectedValue);
@@ -62,7 +73,14 @@ is(format(-62200000000000, '{Y}'), '-2');
 is(format(-62200000000000, '{$Y}'), '-2');
 
 console.log('transform');
-is(format('2022-12-02T12:34:56.789', '{WD}, {M} {$D}, {Y}', {M: ({$M}) => months[$M]}), 'Fri, Dec 2, 2022');
+is(format('2022-12-02T12:34:56.789', '{WD}, {M} {$D}, {Y}', {
+    WD: ({$WD}) => weekDays[$WD],
+    M: ({$M}) => months[$M],
+}), 'Fri, Dec 2, 2022');
+is(format('2022-12-02T12:34:56.789', '{WD} {$D}. {M} {Y}', {
+    WD: ({$WD}) => customLocale.weekDays[$WD],
+    M: ({$M}) => customLocale.months[$M],
+}), 'föstudagur 2. desember 2022');
 
 console.log('span');
 let d = Date.now();
