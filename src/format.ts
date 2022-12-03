@@ -8,7 +8,7 @@ import {getDateComponents} from './getDateComponents';
 
 export function format(
     date: DateValue,
-    dateTemplate: string,
+    template: string,
     transformMap?: Partial<Record<DateComponentKey, (dateComponents: DateComponents) => unknown>>,
 ): string {
     if (isInvalidDate(date))
@@ -19,5 +19,5 @@ export function format(
     if (!dateComponents)
         return INVALID_DATE_STRING;
 
-    return fill(dateTemplate, dateComponents, transformMap);
+    return fill(template, dateComponents, transformMap);
 }
