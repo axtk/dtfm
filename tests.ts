@@ -32,8 +32,13 @@ function is(testedValue: unknown, expectedValue: unknown) {
     }
 }
 
-console.log();
-console.log('basic');
+function suite(title: string) {
+    console.log();
+    console.log(title);
+    k = 0;
+}
+
+suite('basic');
 is(format('2022-12-02T12:34:56.789', '{Y}-{M}-{D}'), '2022-12-02');
 is(format('2022-12-02T12:34:56.789', '{Y}/{M}/{D}'), '2022/12/02');
 is(format('2022-12-02T12:34:56.789', '{D}.{M}'), '02.12');
@@ -42,12 +47,12 @@ is(format('2022-12-02T12:34:56.789', '{Y}-{M}-{D} {h}:{m}:{s}.{ms}'), '2022-12-0
 is(format('2022-12-02T12:34:56.789', '{WD}'), 'Fri');
 is(format('2022-12-02T12:34:56.789', '{WD} {M}/{D}'), 'Fri 12/02');
 
-console.log('am/pm');
+suite('am/pm');
 is(format('2022-12-02T12:34:56.789', '{h12}:{m}:{s} {a}'), '12:34:56 PM');
 is(format('2022-01-01T23:45:54.321', '{h12}:{m}:{s} {a}'), '11:45:54 PM');
 is(format('2022-07-12T01:23:45.678', '{h12}:{m}:{s} {a}'), '01:23:45 AM');
 
-console.log('timezone');
+suite('timezone');
 is(format('2022-12-02T12:34:56.789', '{Y}-{M}-{D} {h}:{m}:{s}.{ms} {tz}', '-01:00'), '2022-12-02 12:34:56.789 -01:00');
 is(format('2022-12-02T12:34:56.789-01:00', '{Y}-{M}-{D} {h}:{m}:{s}.{ms} {tz}'), '2022-12-02 12:34:56.789 -01:00');
 is(format('2022-12-02T12:34:56.789-01:00', '{Y}-{M}-{D} {h}:{m}:{s}.{ms} {tz}', '-02:00'), '2022-12-02 11:34:56.789 -02:00');
@@ -56,13 +61,13 @@ is(format('2022-12-02T12:34:56.789-03:00', '{Y}-{M}-{D} {h}:{m}:{s}.{ms} {tz}', 
 is(format('2022-12-02T12:34:56.789Z', '{Y}-{M}-{D} {h}:{m}:{s}.{ms} {tz}'), '2022-12-02 12:34:56.789 +00:00');
 is(format('2022-12-02T12:34:56.789', '{Y}-{M}-{D} {h}:{m}:{s}.{ms} {tz}', 'Z'), '2022-12-02 12:34:56.789 +00:00');
 
-console.log('iso');
+suite('iso');
 is(format('2022-12-02T12:34:56.789', '{isoDate}'), '2022-12-02');
 is(format('2022-12-02T12:34:56.789', '{isoTime}'), '12:34:56');
 is(format('2022-12-02T12:34:56.789', '{isoTimeMs}'), '12:34:56.789');
 is(format('2022-12-02T12:34:56.789', '{iso}', '+00:00'), '2022-12-02T12:34:56.789+00:00');
 
-console.log('era');
+suite('era');
 let eraTemplate: FormatTemplate = ({E}) => E === 'AD' ? '{E} {YE}' : '{YE} {E}';
 is(format('2022-12-02T12:34:56.789', eraTemplate), 'AD 2022');
 is(format(-62200000000000, eraTemplate), '3 BC');
@@ -72,7 +77,7 @@ is(format(-62200000000000, '{YE} {CE}'), '3 BCE');
 is(format(-62200000000000, '{Y}'), '-2');
 is(format(-62200000000000, '{$Y}'), '-2');
 
-console.log('transform');
+suite('transform');
 is(format('2022-12-02T12:34:56.789', '{WD}, {M} {$D}, {Y}', {
     WD: ({$WD}) => weekDays[$WD],
     M: ({$M}) => months[$M],
@@ -82,7 +87,7 @@ is(format('2022-12-02T12:34:56.789', '{WD} {$D}. {M} {Y}', {
     M: ({$M}) => customLocale.months[$M],
 }), 'föstudagur 2. desember 2022');
 
-console.log('span');
+suite('span');
 let d = Date.now();
 is(toTimeSpan(d - 5678, d), '5.678"');
 is(toTimeSpan(d - (2*MIN + 5678), d), '2\'05.678"');
