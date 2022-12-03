@@ -11,9 +11,11 @@ export function getDateComponents(date: DateValue): DateComponents | undefined {
         return;
 
     let d = date instanceof Date ? date : new Date(date);
+
+    let year = d.getFullYear();
     let hours = d.getHours();
 
-    let Y = String(d.getFullYear());
+    let Y = String(year);
     let M = pad(d.getMonth() + 1, 2);
     let D = pad(d.getDate(), 2);
     let WD = weekDays[d.getDay()];
@@ -22,6 +24,11 @@ export function getDateComponents(date: DateValue): DateComponents | undefined {
     let m = pad(d.getMinutes(), 2);
     let s = pad(d.getSeconds(), 2);
     let ms = pad(d.getMilliseconds(), 3);
+
+    // AD 1 = year 1, 1 BC = year 0, 2 BC = year -1, etc.
+    let YE = String(year < 1 ? abs(year - 1) : year);
+    let E: DateComponents['E'] = year < 1 ? 'BC' : 'AD';
+    let CE: DateComponents['CE'] = year < 1 ? 'BCE' : 'CE';
 
     let h12 = pad(hours === 0 ? 12 : hours % 12, 2);
     let a: DateComponents['a'] = hours < 12 ? 'AM' : 'PM';
@@ -45,7 +52,7 @@ export function getDateComponents(date: DateValue): DateComponents | undefined {
     return {
         date: d,
         timestamp: d.getTime(),
-        Y, M, D, WD,
+        Y, M, D, WD, YE, E, CE,
         h, m, s, ms, h12, a, tz,
         isoDate, isoTime, isoTimeMs, iso,
     };

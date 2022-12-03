@@ -2,11 +2,14 @@ export type DateComponentKey =
     | 'date'
     | 'timestamp'
     | 'Y'          // year
+    | 'YE'         // year of a calendar era (specified by AD/BC or CE/BCE)
+    | 'E'          // Christian era: AD/BC
+    | 'CE'         // Common Era: CE/BCE
     | 'M'          // month
     | 'D'          // day
     | 'h'          // hours
     | 'h12'        // 12h-clock hours
-    | 'a'          // AM/PM day period
+    | 'a'          // day period: AM/PM
     | 'm'          // minutes
     | 's'          // seconds
     | 'ms'         // milliseconds
