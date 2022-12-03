@@ -1,6 +1,6 @@
 import {format, FormatTemplate} from './src/format';
 import {toTimeSpan} from './src/toTimeSpan';
-import {DAY, HOUR, MIN, weekDays, months} from './src/const';
+import {DAY, HOUR, MIN} from './src/const';
 
 let k = 0, failed = false;
 
