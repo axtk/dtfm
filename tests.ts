@@ -1,13 +1,25 @@
 import {format, FormatTemplate} from './src/format';
 
+let k = 0, failed = false;
+
 function is(testedValue: unknown, expectedValue: unknown) {
-    console.assert(
-        JSON.stringify(testedValue) === JSON.stringify(expectedValue),
-        'is %o',
-        {testedValue, expectedValue},
-    );
+    let ok = JSON.stringify(testedValue) === JSON.stringify(expectedValue);
+
+    console.log(`  #${('00' + (++k)).slice(-3)} ${ok ? 'ok' : 'failed'}`);
+
+    if (!ok) {
+        try {
+            throw new Error('Assertion failed');
+        }
+        catch (error) {
+            console.log({testedValue, expectedValue});
+            console.log(error);
+        }
+        failed = true;
+    }
 }
 
+console.log();
 console.log('basic');
 is(format('2022-12-02T12:34:56.789', '{Y}-{M}-{D}'), '2022-12-02');
 is(format('2022-12-02T12:34:56.789', '{Y}/{M}/{D}'), '2022/12/02');
@@ -45,3 +57,7 @@ is(format(-62200000000000, '{Y}/{M}/{D}'), '-2/12/17');
 is(format('2022-12-02T12:34:56.789', '{YE} {CE}'), '2022 CE');
 is(format(-62200000000000, '{YE} {CE}'), '3 BCE');
 is(format(-62200000000000, '{Y}'), '-2');
+
+console.log();
+if (failed) throw new Error('Failed');
+else console.log('Passed');
