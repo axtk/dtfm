@@ -11,16 +11,20 @@ export function getDateComponents(date: DateValue): DateComponents | undefined {
         return;
 
     let d = date instanceof Date ? date : new Date(date);
+    let hours = d.getHours();
 
     let Y = String(d.getFullYear());
     let M = pad(d.getMonth() + 1, 2);
     let D = pad(d.getDate(), 2);
     let WD = weekDays[d.getDay()];
 
-    let h = pad(d.getHours(), 2);
+    let h = pad(hours, 2);
     let m = pad(d.getMinutes(), 2);
     let s = pad(d.getSeconds(), 2);
     let ms = pad(d.getMilliseconds(), 3);
+
+    let h12 = pad(hours === 0 ? 12 : hours % 12, 2);
+    let a: DateComponents['a'] = hours < 12 ? 'AM' : 'PM';
 
     let tzOffset = d.getTimezoneOffset();
     let tzSign = -sign(tzOffset);
@@ -41,9 +45,8 @@ export function getDateComponents(date: DateValue): DateComponents | undefined {
     return {
         date: d,
         timestamp: d.getTime(),
-        Y, M, D,
-        h, m, s, ms,
-        tz, WD,
+        Y, M, D, WD,
+        h, m, s, ms, h12, a, tz,
         isoDate, isoTime, isoTimeMs, iso,
     };
 }

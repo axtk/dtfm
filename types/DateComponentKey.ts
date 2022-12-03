@@ -5,6 +5,8 @@ export type DateComponentKey =
     | 'M'          // month
     | 'D'          // day
     | 'h'          // hours
+    | 'h12'        // 12h-clock hours
+    | 'a'          // AM/PM day period
     | 'm'          // minutes
     | 's'          // seconds
     | 'ms'         // milliseconds
