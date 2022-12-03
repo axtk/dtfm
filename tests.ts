@@ -1,4 +1,4 @@
-import {format} from './src/format';
+import {format, FormatTemplate} from './src/format';
 
 function is(testedValue: unknown, expectedValue: unknown) {
     console.assert(
@@ -34,3 +34,12 @@ is(format('2022-12-02T12:34:56.789-01:00', '{Y}-{M}-{D} {h}:{m}:{s}.{ms} {tz}'),
 is(format('2022-12-02T12:34:56.789-01:00', '{Y}-{M}-{D} {h}:{m}:{s}.{ms} {tz}', '-02:00'), '2022-12-02 11:34:56.789 -02:00');
 is(format('2022-12-02T12:34:56.789-01:00', '{Y}-{M}-{D} {h}:{m}:{s}.{ms} {tz}', '+00:00'), '2022-12-02 13:34:56.789 +00:00');
 is(format('2022-12-02T12:34:56.789-03:00', '{Y}-{M}-{D} {h}:{m}:{s}.{ms} {tz}', '+01:00'), '2022-12-02 16:34:56.789 +01:00');
+
+console.log('era');
+let eraTemplate: FormatTemplate = ({E}) => E === 'AD' ? '{E} {YE}' : '{YE} {E}';
+is(format('2022-12-02T12:34:56.789', eraTemplate), 'AD 2022');
+is(format(-62200000000000, eraTemplate), '3 BC');
+is(format(-62200000000000, '{Y}/{M}/{D}'), '-2/12/17');
+is(format('2022-12-02T12:34:56.789', '{YE} {CE}'), '2022 CE');
+is(format(-62200000000000, '{YE} {CE}'), '3 BCE');
+is(format(-62200000000000, '{Y}'), '-2');
