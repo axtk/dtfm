@@ -30,7 +30,7 @@ export function getDateComponents(date: DateValue): DateComponents | undefined {
     let E: DateComponents['E'] = year < 1 ? 'BC' : 'AD';
     let CE: DateComponents['CE'] = year < 1 ? 'BCE' : 'CE';
 
-    let h12 = pad(hours === 0 ? 12 : hours % 12, 2);
+    let h12 = pad(hours % 12 || 12, 2);
     let a: DateComponents['a'] = hours < 12 ? 'AM' : 'PM';
 
     let tzOffset = d.getTimezoneOffset();
