@@ -1,4 +1,5 @@
 import {format, FormatTemplate} from './src/format';
+import {weekDays, months} from './src/const';
 
 let k = 0, failed = false;
 
@@ -57,6 +58,10 @@ is(format(-62200000000000, '{Y}/{M}/{D}'), '-2/12/17');
 is(format('2022-12-02T12:34:56.789', '{YE} {CE}'), '2022 CE');
 is(format(-62200000000000, '{YE} {CE}'), '3 BCE');
 is(format(-62200000000000, '{Y}'), '-2');
+is(format(-62200000000000, '{$Y}'), '-2');
+
+console.log('transform');
+is(format('2022-12-02T12:34:56.789', '{WD}, {M} {$D}, {Y}', {M: ({$M}) => months[$M]}), 'Fri, Dec 2, 2022');
 
 console.log();
 if (failed) throw new Error('Failed');
