@@ -32,15 +32,15 @@ export function getDateComponents(date: DateValue, targetTimezone?: string): Dat
         tzOffset = targetTzOffset;
 
     let $Y = d.getFullYear();
-    let $M = d.getMonth();
+    let $M = d.getMonth() + 1;
     let $D = d.getDate();
     let $WD = d.getDay();
 
     let Y = String($Y);
-    let M = pad($M + 1, 2);
+    let M = pad($M, 2);
     let D = pad($D, 2);
     let WD = weekDays[$WD];
-    let MM = months[$M];
+    let MM = months[$M - 1];
 
     let $h = d.getHours();
     let $m = d.getMinutes();

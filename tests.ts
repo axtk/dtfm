@@ -47,7 +47,7 @@ is(format('2022-12-02T12:34:56.789', '{Y}-{M}-{D} {h}:{m}:{s}.{ms}'), '2022-12-0
 is(format('2022-12-02T12:34:56.789', '{$WD}'), '5');
 
 suite('abbreviations');
-is(format('2022-07-21T12:34:56.789', '{WD} {M}/{D}'), 'Thu 07/21');
+is(format('2022-07-21T12:34:56.789', '{WD} {$M}/{D}'), 'Thu 7/21');
 is(format('2022-12-02T12:34:56.789', '{WD}, {MM} {$D}, {Y}'), 'Fri, Dec 2, 2022');
 
 suite('am/pm');
@@ -83,7 +83,7 @@ is(format(-62200000000000, '{$Y}'), '-2');
 suite('transform');
 is(format('2022-12-02T12:34:56.789', '{WD} {$D}. {M} {Y}', {
     WD: ({$WD}) => customLocale.weekDays[$WD],
-    M: ({$M}) => customLocale.months[$M],
+    M: ({$M}) => customLocale.months[$M - 1],
 }), 'föstudagur 2. desember 2022');
 
 suite('span');
