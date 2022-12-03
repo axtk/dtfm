@@ -47,7 +47,7 @@ export function getDateComponents(date: DateValue): DateComponents | undefined {
     let isoTime = `${h}:${m}:${s}`;
     let isoTimeMs = `${isoTime}.${ms}`;
 
-    let iso = `${isoDate}T${isoTimeMs}Z${tz}`;
+    let iso = `${isoDate}T${isoTimeMs}${tz}`;
 
     return {
         date: d,
