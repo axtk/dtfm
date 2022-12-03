@@ -9,12 +9,31 @@ import {getDateComponents} from './getDateComponents';
 export function format(
     date: DateValue,
     template: string,
+    targetTimezone?: string,
+): string;
+
+export function format(
+    date: DateValue,
+    template: string,
     transformMap?: Partial<Record<DateComponentKey, (dateComponents: DateComponents) => unknown>>,
+    targetTimezone?: string,
+): string;
+
+export function format(
+    date: DateValue,
+    template: string,
+    transformMap?: Partial<Record<DateComponentKey, (dateComponents: DateComponents) => unknown>> | string,
+    targetTimezone?: string,
 ): string {
     if (isInvalidDate(date))
         return INVALID_DATE_STRING;
 
-    let dateComponents = getDateComponents(date);
+    if (typeof transformMap === 'string') {
+        targetTimezone = transformMap;
+        transformMap = undefined;
+    }
+
+    let dateComponents = getDateComponents(date, targetTimezone);
 
     if (!dateComponents)
         return INVALID_DATE_STRING;

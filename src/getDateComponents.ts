@@ -2,15 +2,34 @@ import {pad} from 'stfm';
 import type {DateValue} from '../types/DateValue';
 import type {DateComponents} from '../types/DateComponents';
 import {isInvalidDate} from './isInvalidDate';
-import {weekDays} from './const';
+import {getTimezone} from './getTimezone';
+import {getTimezoneOffset} from './getTimezoneOffset';
+import {weekDays, MIN} from './const';
 
 const {abs, floor, sign} = Math;
 
-export function getDateComponents(date: DateValue): DateComponents | undefined {
+export function getDateComponents(date: DateValue, targetTimezone?: string): DateComponents | undefined {
     if (isInvalidDate(date))
         return;
 
     let d = date instanceof Date ? date : new Date(date);
+
+    let tzOffset = d.getTimezoneOffset();
+    let targetTzOffset = getTimezoneOffset(targetTimezone);
+
+    if (typeof date === 'string') {
+        let originalTzOffset = getTimezoneOffset(getTimezone(date));
+
+        if (originalTzOffset !== undefined) {
+            if (targetTzOffset === undefined)
+                targetTzOffset = originalTzOffset;
+
+            d.setTime(d.getTime() + (tzOffset - targetTzOffset)*MIN);
+        }
+    }
+
+    if (targetTzOffset !== undefined)
+        tzOffset = targetTzOffset;
 
     let year = d.getFullYear();
     let hours = d.getHours();
@@ -33,13 +52,11 @@ export function getDateComponents(date: DateValue): DateComponents | undefined {
     let h12 = pad(hours % 12 || 12, 2);
     let a: DateComponents['a'] = hours < 12 ? 'AM' : 'PM';
 
-    let tzOffset = d.getTimezoneOffset();
     let tzSign = -sign(tzOffset);
+    let absTzOffset = abs(tzOffset);
 
-    tzOffset = abs(tzOffset);
-
-    let tzHours = floor(tzOffset/60);
-    let tzMinutes = tzOffset - tzHours*60;
+    let tzHours = floor(absTzOffset/60);
+    let tzMinutes = absTzOffset - tzHours*60;
 
     let tz = `${tzSign === -1 ? '-' : '+'}${pad(tzHours, 2)}:${pad(tzMinutes, 2)}`;
 
