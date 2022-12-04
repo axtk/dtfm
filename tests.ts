@@ -59,6 +59,7 @@ is(format('2022-12-02T07:34:56.789', '{HH}:{mm}:{ss}'), '07:34:56');
 is(format('2022-12-02T19:34:56.789', '{H}:{mm}:{ss}'), '19:34:56');
 is(format('2022-12-02T07:34:56.789', '{H}:{mm}:{ss}'), '7:34:56');
 is(format('2022-12-02T12:34:56.789', '{YY}-{MM}-{DD} {HH}:{mm}:{ss}.{ms}'), '2022-12-02 12:34:56.789');
+is(format('2022-12-02T12:34:56.789').slice(0, 23), '2022-12-02T12:34:56.789');
 
 suite('abbreviations');
 let months = 'Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec'.split(' ');

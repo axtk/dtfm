@@ -17,25 +17,25 @@ export type FormatOptions = {
 
 export function format(
     date: DateValue,
-    template: FormatTemplate,
+    template?: FormatTemplate,
     targetTimezone?: string,
 ): string;
 
 export function format(
     date: DateValue,
-    template: FormatTemplate,
+    template?: FormatTemplate,
     transform?: FormatTransform,
     targetTimezone?: string,
 ): string;
 
 export function format(
     date: DateValue,
-    options: FormatOptions,
+    options?: FormatOptions,
 ): string;
 
 export function format(
     date: DateValue,
-    template: FormatTemplate | FormatOptions,
+    template: FormatTemplate | FormatOptions = '{iso}',
     transform?: FormatTransform | string,
     targetTimezone?: string,
 ): string {
