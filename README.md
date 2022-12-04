@@ -63,10 +63,10 @@ formatDate(-62200000000000, eraTemplate);
 
 -----
 
-**`toTimeSpan(duration)`**
+**`formatDuration(duration)`**
 
 ```js
-toTimeSpan(123456);
+formatDuration(123456);
 
 // = 2'03.456"
 ```

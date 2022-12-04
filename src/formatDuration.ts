@@ -3,7 +3,7 @@ import {SEC, MIN, HOUR, DAY} from './const';
 
 const {abs, floor, sign} = Math;
 
-export function toTimeSpan(duration: number) {
+export function formatDuration(duration: number) {
     let durationSign = sign(duration);
     let absDuration = abs(duration);
 

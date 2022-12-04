@@ -1,5 +1,5 @@
 import {formatDate, FormatDateTemplate, FormatDateOptions} from './src/formatDate';
-import {toTimeSpan} from './src/toTimeSpan';
+import {formatDuration} from './src/formatDuration';
 import {DAY, HOUR, MIN} from './src/const';
 
 let k = 0, failed = false;
@@ -119,12 +119,12 @@ is(formatDate('2022-12-02T12:34:56.789', '{WD} {D}. {MMM} {Y}', {
 is(formatDate('2022-07-19T12:34:56.789', customLocale.fullDate), 'þriðjudagur 19. júlí 2022');
 
 suite('span');
-is(toTimeSpan(5678), '5.678"');
-is(toTimeSpan(2*MIN + 5678), '2\'05.678"');
-is(toTimeSpan(-(2*MIN + 5678)), '-2\'05.678"');
-is(toTimeSpan(3*HOUR + 7*MIN + 5678), '3h07\'05.678"');
-is(toTimeSpan(12*HOUR + 17*MIN + 25678), '12h17\'25.678"');
-is(toTimeSpan(2*DAY + 3*HOUR + 17*MIN + 25678), '2d03h17\'25.678"');
+is(formatDuration(5678), '5.678"');
+is(formatDuration(2*MIN + 5678), '2\'05.678"');
+is(formatDuration(-(2*MIN + 5678)), '-2\'05.678"');
+is(formatDuration(3*HOUR + 7*MIN + 5678), '3h07\'05.678"');
+is(formatDuration(12*HOUR + 17*MIN + 25678), '12h17\'25.678"');
+is(formatDuration(2*DAY + 3*HOUR + 17*MIN + 25678), '2d03h17\'25.678"');
 
 console.log();
 if (failed) throw new Error('Failed');
