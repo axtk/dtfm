@@ -10,6 +10,41 @@ formatDate(new Date(), '{YY}-{MM}-{DD} {HH}:{mm}:{ss}');
 ```
 
 <details>
+<summary>List of placeholders</summary>
+
+| Placeholder | Value |
+|-------------|-------|
+| `{Y}` | Year |
+| `{YY}` | Year |
+| `{YE}` | Year of a calendar era (specified by AD/BC or CE/BCE) |
+| `{E}` | Christian era: AD/BC |
+| `{CE}` | Common Era: CE/BCE |
+| `{M}` | Month |
+| `{MM}` | Month (always 2-digit, zero-padded) |
+| `{MMM}` | Month abbreviation |
+| `{D}` | Day |
+| `{DD}` | Day (always 2-digit, zero-padded) |
+| `{H}` | Hours |
+| `{HH}` | Hours (always 2-digit, zero-padded) |
+| `{h}` | 12h-clock hours |
+| `{hh}` | 12h-clock hours (always 2-digit, zero-padded) |
+| `{a}` | Day period: AM/PM |
+| `{m}` | Minutes |
+| `{mm}` | Minutes (always 2-digit, zero-padded) |
+| `{s}` | Seconds |
+| `{ss}` | Seconds (always 2-digit, zero-padded) |
+| `{ms}` | Milliseconds (always 3-digit, zero-padded) |
+| `{tz}` | Time zone |
+| `{wd}` | Week day |
+| `{WD}` | Week day abbreviation |
+| `{iso}` | Local time zone ISO date string |
+| `{isoDate}` | Date (= `{YY}-{MM}-{DD}`) |
+| `{isoTime}` | Time (= `{HH}:{mm}:{ss}`) |
+| `{isoTimeMs}` | Time with milliseconds |
+
+</details>
+
+<details>
 <summary>Using external locale-specific formats</summary>
 
 ```js
