@@ -16,6 +16,8 @@ export type DateComponents = {
     YY: string;
     /** Year, zero-prefixed when shorter than 4 digits */
     YYYY: string;
+    /** Year, last 2 digits zero-prefixed when shorter than 2 digits */
+    yy: string;
     /** Year of a calendar era (specified by AD/BC or CE/BCE) */
     YE: string;
     /** Christian era: AD/BC */

@@ -49,6 +49,7 @@ export function getDateComponents(date: DateValue, targetTimezone?: string): Dat
     let DD = pad(D, 2);
 
     let YYYY = `${yearSign}${pad(absYear, 4)}`;
+    let yy = pad(absYear % 100, 2);
     let MMM = months[month - 1];
 
     let hours = d.getHours();
@@ -97,7 +98,7 @@ export function getDateComponents(date: DateValue, targetTimezone?: string): Dat
 
         year, month, day, weekDay,
         Y, M, D, WD,
-        YY, YYYY, MM, DD,
+        YY, YYYY, yy, MM, DD,
         YE, E, CE, MMM,
 
         hours, minutes, seconds, milliseconds, hours12,

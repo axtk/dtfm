@@ -17,6 +17,7 @@ formatDate(new Date(), '{YY}-{MM}-{DD} {HH}:{mm}:{ss}');
 | `{Y}` | Year |
 | `{YY}` | Year, zero-prefixed when shorter than 2 digits |
 | `{YYYY}` | Year, zero-prefixed when shorter than 4 digits |
+| `{yy}` | Year, last 2 digits zero-prefixed when shorter than 2 digits |
 | `{YE}` | Year of a calendar era (specified by AD/BC or CE/BCE) |
 | `{E}` | Christian era: AD/BC |
 | `{CE}` | Common Era: CE/BCE |
