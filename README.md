@@ -35,12 +35,13 @@ formatDate(new Date(), '{YY}-{MM}-{DD} {HH}:{mm}:{ss}');
 | `{ss}` | Seconds (always 2-digit, zero-padded) |
 | `{ms}` | Milliseconds (always 3-digit, zero-padded) |
 | `{tz}` | Time zone |
-| `{wd}` | Week day |
 | `{WD}` | Week day abbreviation |
 | `{iso}` | Local time zone ISO date string |
 | `{isoDate}` | Date (= `{YY}-{MM}-{DD}`) |
 | `{isoTime}` | Time (= `{HH}:{mm}:{ss}`) |
 | `{isoTimeMs}` | Time with milliseconds |
+
+Unformatted date components also available as placeholder values: `timestamp`, `year`, `month`, `day`, `hours`, `hours12` (12h-clock hours), `minutes`, `seconds`, `milliseconds`, `weekDay`, `timezoneOffset`, `input` (the first argument of the `formatDate()` call).
 
 </details>
 
