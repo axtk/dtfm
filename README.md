@@ -63,12 +63,10 @@ format(-62200000000000, eraTemplate);
 
 -----
 
-**`toTimeSpan(startTime, [endTime = Date.now()])`**
+**`toTimeSpan(duration)`**
 
 ```js
-let time = Date.now();
-
-toTimeSpan(time - 123456, time);
+toTimeSpan(123456);
 
 // = 2'03.456"
 ```

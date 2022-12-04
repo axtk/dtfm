@@ -97,13 +97,12 @@ is(format('2022-12-02T12:34:56.789', '{WD} {D}. {MMM} {Y}', {
 is(format('2022-12-02T12:34:56.789', customLocale.fullDate), 'föstudagur 2. desember 2022');
 
 suite('span');
-let d = Date.now();
-is(toTimeSpan(d - 5678, d), '5.678"');
-is(toTimeSpan(d - (2*MIN + 5678), d), '2\'05.678"');
-is(toTimeSpan(d, d - (2*MIN + 5678)), '-2\'05.678"');
-is(toTimeSpan(d - (3*HOUR + 7*MIN + 5678), d), '3h07\'05.678"');
-is(toTimeSpan(d - (12*HOUR + 17*MIN + 25678), d), '12h17\'25.678"');
-is(toTimeSpan(d - (2*DAY + 3*HOUR + 17*MIN + 25678), d), '2d03h17\'25.678"');
+is(toTimeSpan(5678), '5.678"');
+is(toTimeSpan(2*MIN + 5678), '2\'05.678"');
+is(toTimeSpan(-(2*MIN + 5678)), '-2\'05.678"');
+is(toTimeSpan(3*HOUR + 7*MIN + 5678), '3h07\'05.678"');
+is(toTimeSpan(12*HOUR + 17*MIN + 25678), '12h17\'25.678"');
+is(toTimeSpan(2*DAY + 3*HOUR + 17*MIN + 25678), '2d03h17\'25.678"');
 
 console.log();
 if (failed) throw new Error('Failed');

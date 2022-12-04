@@ -1,21 +1,17 @@
 import {pad} from 'stfm';
-import type {DateValue} from '../types/DateValue';
 import {SEC, MIN, HOUR, DAY} from './const';
-import {toTimestamp} from './toTimestamp';
 
 const {abs, floor, sign} = Math;
 
-export function toTimeSpan(startTime: DateValue, endTime: DateValue = Date.now()) {
-    let dt = toTimestamp(endTime) - toTimestamp(startTime);
-    let dtSign = sign(dt);
+export function toTimeSpan(duration: number) {
+    let durationSign = sign(duration);
+    let absDuration = abs(duration);
 
-    dt = abs(dt);
-
-    let d = floor(dt/DAY);
-    let h = floor((dt - d*DAY)/HOUR);
-    let m = floor((dt - d*DAY - h*HOUR)/MIN);
-    let s = floor((dt - d*DAY - h*HOUR - m*MIN)/SEC);
-    let ms = dt - d*DAY - h*HOUR - m*MIN - s*SEC;
+    let d = floor(absDuration/DAY);
+    let h = floor((absDuration - d*DAY)/HOUR);
+    let m = floor((absDuration - d*DAY - h*HOUR)/MIN);
+    let s = floor((absDuration - d*DAY - h*HOUR - m*MIN)/SEC);
+    let ms = absDuration - d*DAY - h*HOUR - m*MIN - s*SEC;
 
     let span = '';
 
@@ -24,5 +20,5 @@ export function toTimeSpan(startTime: DateValue, endTime: DateValue = Date.now()
     span += span ? `${pad(m, 2)}'` : (m === 0 ? '' : `${m}'`);
     span += `${span ? pad(s, 2) : s}.${pad(ms, 3)}"`;
 
-    return `${dtSign === -1 ? '-' : ''}${span}`;
+    return `${durationSign === -1 ? '-' : ''}${span}`;
 }
