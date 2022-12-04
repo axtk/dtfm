@@ -1,6 +1,6 @@
 import type {DateValue} from '../types/DateValue';
-import {format} from './format';
+import {formatDate} from './formatDate';
 
 export function toLocalISOString(date: DateValue) {
-    return format(date, '{iso}');
+    return formatDate(date, '{iso}');
 }

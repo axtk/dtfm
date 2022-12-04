@@ -6,37 +6,37 @@ import {INVALID_DATE_STRING} from './const';
 import {isInvalidDate} from './isInvalidDate';
 import {getDateComponents} from './getDateComponents';
 
-export type FormatTemplate = string | ((dateComponents: DateComponents) => string);
-export type FormatTransform = Partial<Record<DateComponentKey, (dateComponents: DateComponents) => unknown>>;
+export type FormatDateTemplate = string | ((dateComponents: DateComponents) => string);
+export type FormatDateTransform = Partial<Record<DateComponentKey, (dateComponents: DateComponents) => unknown>>;
 
-export type FormatOptions = {
-    template: FormatTemplate;
-    transform?: FormatTransform;
+export type FormatDateOptions = {
+    template: FormatDateTemplate;
+    transform?: FormatDateTransform;
     targetTimezone?: string;
 };
 
-export function format(
+export function formatDate(
     date: DateValue,
-    template?: FormatTemplate,
+    template?: FormatDateTemplate,
     targetTimezone?: string,
 ): string;
 
-export function format(
+export function formatDate(
     date: DateValue,
-    template?: FormatTemplate,
-    transform?: FormatTransform,
+    template?: FormatDateTemplate,
+    transform?: FormatDateTransform,
     targetTimezone?: string,
 ): string;
 
-export function format(
+export function formatDate(
     date: DateValue,
-    options?: FormatOptions,
+    options?: FormatDateOptions,
 ): string;
 
-export function format(
+export function formatDate(
     date: DateValue,
-    template: FormatTemplate | FormatOptions = '{iso}',
-    transform?: FormatTransform | string,
+    template: FormatDateTemplate | FormatDateOptions = '{iso}',
+    transform?: FormatDateTransform | string,
     targetTimezone?: string,
 ): string {
     if (isInvalidDate(date))

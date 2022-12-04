@@ -1,5 +1,5 @@
 export * from './src/const';
-export * from './src/format';
+export * from './src/formatDate';
 export * from './src/getDateComponents';
 export * from './src/getTimezone';
 export * from './src/getTimezoneOffset';

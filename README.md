@@ -4,11 +4,11 @@
 
 -----
 
-**`format(date, template, [transform], [targetTimezone])`**<br>
-**`format(date, options: { template, [transform], [targetTimezone] })`**
+**`formatDate(date, template, [transform], [targetTimezone])`**<br>
+**`formatDate(date, options: { template, [transform], [targetTimezone] })`**
 
 ```js
-format(new Date(), '{YY}-{MM}-{DD} {HH}:{mm}:{ss}');
+formatDate(new Date(), '{YY}-{MM}-{DD} {HH}:{mm}:{ss}');
 
 // = 2022-07-19 12:34:56
 ```
@@ -17,7 +17,7 @@ format(new Date(), '{YY}-{MM}-{DD} {HH}:{mm}:{ss}');
 <summary>Bringing in locale specifics</summary>
 
 ```js
-format(new Date(), customLocale.fullDate);
+formatDate(new Date(), customLocale.fullDate);
 
 // = þriðjudagur 19. júlí 2022
 ```
@@ -51,11 +51,11 @@ export const customLocale = {
 ```js
 let eraTemplate = ({ E }) => E === 'AD' ? '{E} {YE}' : '{YE} {E}';
 
-format('2022-07-19', eraTemplate);
+formatDate('2022-07-19', eraTemplate);
 
 // = AD 2022
 
-format(-62200000000000, eraTemplate);
+formatDate(-62200000000000, eraTemplate);
 
 // = 3 BC
 ```
