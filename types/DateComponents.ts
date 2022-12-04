@@ -12,8 +12,10 @@ export type DateComponents = {
     year: number;
     /** Year */
     Y: string;
-    /** Year */
+    /** Year, zero-prefixed when shorter than 2 digits */
     YY: string;
+    /** Year, zero-prefixed when shorter than 4 digits */
+    YYYY: string;
     /** Year of a calendar era (specified by AD/BC or CE/BCE) */
     YE: string;
     /** Christian era: AD/BC */
@@ -24,7 +26,7 @@ export type DateComponents = {
     month: number;
     /** Month */
     M: string;
-    /** Month (always 2-digit, zero-padded) */
+    /** Month, zero-prefixed when shorter than 2 digits */
     MM: string;
     /** Month abbreviation */
     MMM: typeof months[number];
@@ -32,19 +34,19 @@ export type DateComponents = {
     day: number;
     /** Day */
     D: string;
-    /** Day (always 2-digit, zero-padded) */
+    /** Day, zero-prefixed when shorter than 2 digits */
     DD: string;
     /** Hours */
     hours: number;
     /** Hours */
     H: string;
-    /** Hours (always 2-digit, zero-padded) */
+    /** Hours, zero-prefixed when shorter than 2 digits */
     HH: string;
     /** 12h-clock hours */
     hours12: number;
     /** 12h-clock hours */
     h: string;
-    /** 12h-clock hours (always 2-digit, zero-padded) */
+    /** 12h-clock hours, zero-prefixed when shorter than 2 digits */
     hh: string;
     /** Day period: AM/PM */
     a: string;
@@ -52,17 +54,17 @@ export type DateComponents = {
     minutes: number;
     /** Minutes */
     m: string;
-    /** Minutes (always 2-digit, zero-padded) */
+    /** Minutes, zero-prefixed when shorter than 2 digits */
     mm: string;
     /** Seconds */
     seconds: number;
     /** Seconds */
     s: string;
-    /** Seconds (always 2-digit, zero-padded) */
+    /** Seconds, zero-prefixed when shorter than 2 digits */
     ss: string;
     /** Milliseconds */
     milliseconds: number;
-    /** Milliseconds (always 3-digit, zero-padded) */
+    /** Milliseconds, zero-prefixed when shorter than 3 digits */
     ms: string;
     /** Time zone */
     tz: string;

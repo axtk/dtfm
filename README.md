@@ -15,25 +15,26 @@ formatDate(new Date(), '{YY}-{MM}-{DD} {HH}:{mm}:{ss}');
 | Placeholder | Value |
 |-------------|-------|
 | `{Y}` | Year |
-| `{YY}` | Year |
+| `{YY}` | Year, zero-prefixed when shorter than 2 digits |
+| `{YYYY}` | Year, zero-prefixed when shorter than 4 digits |
 | `{YE}` | Year of a calendar era (specified by AD/BC or CE/BCE) |
 | `{E}` | Christian era: AD/BC |
 | `{CE}` | Common Era: CE/BCE |
 | `{M}` | Month |
-| `{MM}` | Month (always 2-digit, zero-padded) |
+| `{MM}` | Month, zero-prefixed when shorter than 2 digits |
 | `{MMM}` | Month abbreviation |
 | `{D}` | Day |
-| `{DD}` | Day (always 2-digit, zero-padded) |
+| `{DD}` | Day, zero-prefixed when shorter than 2 digits |
 | `{H}` | Hours |
-| `{HH}` | Hours (always 2-digit, zero-padded) |
+| `{HH}` | Hours, zero-prefixed when shorter than 2 digits |
 | `{h}` | 12h-clock hours |
-| `{hh}` | 12h-clock hours (always 2-digit, zero-padded) |
+| `{hh}` | 12h-clock hours, zero-prefixed when shorter than 2 digits |
 | `{a}` | Day period: AM/PM |
 | `{m}` | Minutes |
-| `{mm}` | Minutes (always 2-digit, zero-padded) |
+| `{mm}` | Minutes, zero-prefixed when shorter than 2 digits |
 | `{s}` | Seconds |
-| `{ss}` | Seconds (always 2-digit, zero-padded) |
-| `{ms}` | Milliseconds (always 3-digit, zero-padded) |
+| `{ss}` | Seconds, zero-prefixed when shorter than 2 digits |
+| `{ms}` | Milliseconds, zero-prefixed when shorter than 3 digits |
 | `{tz}` | Time zone |
 | `{WD}` | Week day abbreviation |
 | `{iso}` | Local time zone ISO date string |

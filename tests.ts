@@ -105,11 +105,15 @@ is(formatDate('2022-12-02T07:34:56.789', '{iso}', '-02:00'), '2022-12-02T07:34:5
 suite('era');
 let eraTemplate: FormatDateTemplate = ({E}) => E === 'AD' ? '{E} {YE}' : '{YE} {E}';
 is(formatDate('2022-12-02T12:34:56.789', eraTemplate), 'AD 2022');
-is(formatDate(-62200000000000, eraTemplate), '3 BC');
-is(formatDate(-62200000000000, '{YY}/{MM}/{DD}'), '-2/12/17');
+is(formatDate(-622e11, eraTemplate), '3 BC');
 is(formatDate('2022-12-02T12:34:56.789', '{YE} {CE}'), '2022 CE');
-is(formatDate(-62200000000000, '{YE} {CE}'), '3 BCE');
-is(formatDate(-62200000000000, '{Y}'), '-2');
+is(formatDate(-622e11, '{YE} {CE}'), '3 BCE');
+is(formatDate('0001-01-01', '{Y}/{MM}/{DD}'), '1/01/01');
+is(formatDate('0001-01-01', '{YY}/{MM}/{DD}'), '01/01/01');
+is(formatDate('0001-01-01', '{YYYY}/{MM}/{DD}'), '0001/01/01');
+is(formatDate(-622e11, '{Y}/{MM}/{DD}'), '-2/12/17');
+is(formatDate(-622e11, '{YY}/{MM}/{DD}'), '-02/12/17');
+is(formatDate(-622e11, '{YYYY}/{MM}/{DD}'), '-0002/12/17');
 
 suite('transform');
 is(formatDate('2022-12-02T12:34:56.789', '{WD} {D}. {MMM} {Y}', {
@@ -118,7 +122,7 @@ is(formatDate('2022-12-02T12:34:56.789', '{WD} {D}. {MMM} {Y}', {
 }), 'föstudagur 2. desember 2022');
 is(formatDate('2022-07-19T12:34:56.789', customLocale.fullDate), 'þriðjudagur 19. júlí 2022');
 
-suite('span');
+suite('duration');
 is(formatDuration(5), '0.005"');
 is(formatDuration(56), '0.056"');
 is(formatDuration(567), '0.567"');
