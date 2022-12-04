@@ -119,12 +119,19 @@ is(formatDate('2022-12-02T12:34:56.789', '{WD} {D}. {MMM} {Y}', {
 is(formatDate('2022-07-19T12:34:56.789', customLocale.fullDate), 'þriðjudagur 19. júlí 2022');
 
 suite('span');
+is(formatDuration(5), '0.005"');
+is(formatDuration(56), '0.056"');
+is(formatDuration(567), '0.567"');
 is(formatDuration(5678), '5.678"');
 is(formatDuration(2*MIN + 5678), '2\'05.678"');
 is(formatDuration(-(2*MIN + 5678)), '-2\'05.678"');
 is(formatDuration(3*HOUR + 7*MIN + 5678), '3h07\'05.678"');
+is(formatDuration(3*HOUR + 5678), '3h00\'05.678"');
 is(formatDuration(12*HOUR + 17*MIN + 25678), '12h17\'25.678"');
+is(formatDuration(12*HOUR + 17*MIN), '12h17\'00.000"');
 is(formatDuration(2*DAY + 3*HOUR + 17*MIN + 25678), '2d03h17\'25.678"');
+is(formatDuration(2*DAY + 15*HOUR + 17*MIN + 25678), '2d15h17\'25.678"');
+is(formatDuration(2*DAY + 17*MIN + 25678), '2d00h17\'25.678"');
 
 console.log();
 if (failed) throw new Error('Failed');
