@@ -19,7 +19,7 @@ format(new Date(), '{YY}-{MM}-{DD} {HH}:{mm}:{ss}');
 ```js
 format(new Date(), customLocale.fullDate);
 
-// = fimmtudagur 19. júlí 2022
+// = þriðjudagur 19. júlí 2022
 ```
 
 ```js
