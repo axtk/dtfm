@@ -7,7 +7,13 @@ import {isInvalidDate} from './isInvalidDate';
 import {getDateComponents} from './getDateComponents';
 
 export type FormatTemplate = string | ((dateComponents: DateComponents) => string);
-export type FormatTransformMap = Partial<Record<DateComponentKey, (dateComponents: DateComponents) => unknown>>;
+export type FormatTransform = Partial<Record<DateComponentKey, (dateComponents: DateComponents) => unknown>>;
+
+export type FormatOptions = {
+    template: FormatTemplate;
+    transform?: FormatTransform;
+    targetTimezone?: string;
+};
 
 export function format(
     date: DateValue,
@@ -18,22 +24,34 @@ export function format(
 export function format(
     date: DateValue,
     template: FormatTemplate,
-    transformMap?: FormatTransformMap,
+    transform?: FormatTransform,
     targetTimezone?: string,
 ): string;
 
 export function format(
     date: DateValue,
-    template: FormatTemplate,
-    transformMap?: FormatTransformMap | string,
+    options: FormatOptions,
+): string;
+
+export function format(
+    date: DateValue,
+    template: FormatTemplate | FormatOptions,
+    transform?: FormatTransform | string,
     targetTimezone?: string,
 ): string {
     if (isInvalidDate(date))
         return INVALID_DATE_STRING;
 
-    if (typeof transformMap === 'string') {
-        targetTimezone = transformMap;
-        transformMap = undefined;
+    if (typeof template === 'object') {
+        let options = template;
+
+        transform = options.transform;
+        targetTimezone = options.targetTimezone;
+        template = options.template;
+    }
+    else if (typeof transform === 'string') {
+        targetTimezone = transform;
+        transform = undefined;
     }
 
     let dateComponents = getDateComponents(date, targetTimezone);
@@ -45,5 +63,5 @@ export function format(
         ? template(dateComponents)
         : template;
 
-    return fill(resolvedTemplate, dateComponents, transformMap);
+    return fill(resolvedTemplate, dateComponents, transform);
 }

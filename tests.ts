@@ -1,18 +1,28 @@
-import {format, FormatTemplate} from './src/format';
+import {format, FormatTemplate, FormatOptions} from './src/format';
 import {toTimeSpan} from './src/toTimeSpan';
 import {DAY, HOUR, MIN} from './src/const';
 
 let k = 0, failed = false;
 
+const customWeekDays = [
+    'sunnudagur', 'mánudagur', 'þriðjudagur', 'miðvikudagur',
+    'fimmtudagur', 'föstudagur', 'laugardagur',
+];
+const customMonths = [
+    'janúar', 'febrúar', 'mars', 'apríl', 'maí', 'júní',
+    'júlí', 'ágúst', 'september', 'október', 'nóvember', 'desember',
+];
+const customFullDateFormat: FormatOptions = {
+    template: '{WD} {$D}. {M} {Y}',
+    transform: {
+        WD: ({$WD}) => customWeekDays[$WD],
+        M: ({$M}) => customMonths[$M - 1],
+    },
+};
 const customLocale = {
-    weekDays: [
-        'sunnudagur', 'mánudagur', 'þriðjudagur', 'miðvikudagur',
-        'fimmtudagur', 'föstudagur', 'laugardagur',
-    ],
-    months: [
-        'janúar', 'febrúar', 'mars', 'apríl', 'maí', 'júní',
-        'júlí', 'ágúst', 'september', 'október', 'nóvember', 'desember',
-    ],
+    weekDays: customWeekDays,
+    months: customMonths,
+    fullDate: customFullDateFormat,
 };
 
 function is(testedValue: unknown, expectedValue: unknown) {
@@ -85,6 +95,7 @@ is(format('2022-12-02T12:34:56.789', '{WD} {$D}. {M} {Y}', {
     WD: ({$WD}) => customLocale.weekDays[$WD],
     M: ({$M}) => customLocale.months[$M - 1],
 }), 'föstudagur 2. desember 2022');
+is(format('2022-12-02T12:34:56.789', customLocale.fullDate), 'föstudagur 2. desember 2022');
 
 suite('span');
 let d = Date.now();
