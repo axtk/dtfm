@@ -5,8 +5,8 @@ import {toTimestamp} from './toTimestamp';
 
 const {abs, floor, sign} = Math;
 
-export function toTimeSpan(t0: DateValue, t1: DateValue = Date.now()) {
-    let dt = toTimestamp(t1) - toTimestamp(t0);
+export function toTimeSpan(startTime: DateValue, endTime: DateValue = Date.now()) {
+    let dt = toTimestamp(endTime) - toTimestamp(startTime);
     let dtSign = sign(dt);
 
     dt = abs(dt);
