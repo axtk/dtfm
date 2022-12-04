@@ -1,11 +1,18 @@
+import {DateValue} from './DateValue';
+
 export type DateComponents = {
+    /** Original value */
+    input: DateValue;
+    /** Date object corresponding to the original value */
     date: Date;
     /** Timestamp */
-    $t: number;
+    timestamp: number;
     /** Year */
-    $Y: number;
+    year: number;
     /** Year */
     Y: string;
+    /** Year */
+    YY: string;
     /** Year of a calendar era (specified by AD/BC or CE/BCE) */
     YE: string;
     /** Christian era: AD/BC */
@@ -13,49 +20,63 @@ export type DateComponents = {
     /** Common Era: CE/BCE */
     CE: string;
     /** Month */
-    $M: number;
+    month: number;
     /** Month */
     M: string;
-    /** Month abbreviation */
+    /** Month (always 2-digit, zero-padded) */
     MM: string;
+    /** Month abbreviation */
+    MMM: string;
     /** Day */
-    $D: number;
+    day: number;
     /** Day */
     D: string;
+    /** Day (always 2-digit, zero-padded) */
+    DD: string;
     /** Hours */
-    $h: number;
+    hours: number;
     /** Hours */
+    H: string;
+    /** Hours (always 2-digit, zero-padded) */
+    HH: string;
+    /** 12h-clock hours */
+    hours12: number;
+    /** 12h-clock hours */
     h: string;
-    /** 12h-clock hours */
-    $h12: number;
-    /** 12h-clock hours */
-    h12: string;
+    /** 12h-clock hours (always 2-digit, zero-padded) */
+    hh: string;
     /** Day period: AM/PM */
     a: string;
     /** Minutes */
-    $m: number;
+    minutes: number;
     /** Minutes */
     m: string;
+    /** Minutes (always 2-digit, zero-padded) */
+    mm: string;
     /** Seconds */
-    $s: number;
+    seconds: number;
     /** Seconds */
     s: string;
+    /** Seconds (always 2-digit, zero-padded) */
+    ss: string;
     /** Milliseconds */
-    $ms: number;
-    /** Milliseconds */
+    milliseconds: number;
+    /** Milliseconds (always 3-digit, zero-padded) */
     ms: string;
     /** Time zone */
     tz: string;
     /** Week day */
-    $WD: number;
+    weekDay: number;
     /** Week day abbreviation */
     WD: string;
     /** Local time zone ISO date string */
     iso: string;
-    /** Date (Y-M-D) */
+    /** Date (YY-MM-DD) */
     isoDate: string;
-    /** Time (h:m:s) */
+    /** Time (HH:mm:ss) */
     isoTime: string;
     /** Time with milliseconds */
     isoTimeMs: string;
+    /** Timezone offset (in minutes) */
+    timezoneOffset: number;
 };

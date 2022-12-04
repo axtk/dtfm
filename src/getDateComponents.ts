@@ -31,35 +31,46 @@ export function getDateComponents(date: DateValue, targetTimezone?: string): Dat
     if (targetTzOffset !== undefined)
         tzOffset = targetTzOffset;
 
-    let $Y = d.getFullYear();
-    let $M = d.getMonth() + 1;
-    let $D = d.getDate();
-    let $WD = d.getDay();
+    let year = d.getFullYear();
+    let month = d.getMonth() + 1;
+    let day = d.getDate();
+    let weekDay = d.getDay();
 
-    let Y = String($Y);
-    let M = pad($M, 2);
-    let D = pad($D, 2);
-    let WD = weekDays[$WD];
-    let MM = months[$M - 1];
+    let Y = String(year);
+    let M = String(month);
+    let D = String(day);
+    let WD = weekDays[weekDay];
 
-    let $h = d.getHours();
-    let $m = d.getMinutes();
-    let $s = d.getSeconds();
-    let $ms = d.getMilliseconds();
+    let YY = Y;
+    let MM = pad(M, 2);
+    let DD = pad(D, 2);
 
-    let h = pad($h, 2);
-    let m = pad($m, 2);
-    let s = pad($s, 2);
-    let ms = pad($ms, 3);
+    let MMM = months[month - 1];
+
+    let hours = d.getHours();
+    let minutes = d.getMinutes();
+    let seconds = d.getSeconds();
+    let milliseconds = d.getMilliseconds();
+
+    let H = String(hours);
+    let m = String(minutes);
+    let s = String(seconds);
+
+    let HH = pad(H, 2);
+    let mm = pad(m, 2);
+    let ss = pad(s, 2);
+    let ms = pad(milliseconds, 3);
 
     // AD 1 = year 1, 1 BC = year 0, 2 BC = year -1, etc.
-    let YE = String($Y < 1 ? abs($Y - 1) : $Y);
-    let E: DateComponents['E'] = $Y < 1 ? 'BC' : 'AD';
-    let CE: DateComponents['CE'] = $Y < 1 ? 'BCE' : 'CE';
+    let YE = String(year < 1 ? abs(year - 1) : year);
+    let E: DateComponents['E'] = year < 1 ? 'BC' : 'AD';
+    let CE: DateComponents['CE'] = year < 1 ? 'BCE' : 'CE';
 
-    let $h12 = $h % 12 || 12;
-    let h12 = pad($h12, 2);
-    let a: DateComponents['a'] = $h < 12 ? 'AM' : 'PM';
+    let hours12 = hours % 12 || 12;
+
+    let h = String(hours12);
+    let hh = pad(h, 2);
+    let a: DateComponents['a'] = hours < 12 ? 'AM' : 'PM';
 
     let tzSign = -sign(tzOffset);
     let absTzOffset = abs(tzOffset);
@@ -69,19 +80,27 @@ export function getDateComponents(date: DateValue, targetTimezone?: string): Dat
 
     let tz = `${tzSign === -1 ? '-' : '+'}${pad(tzHours, 2)}:${pad(tzMinutes, 2)}`;
 
-    let isoDate = `${Y}-${M}-${D}`;
-    let isoTime = `${h}:${m}:${s}`;
+    let isoDate = `${YY}-${MM}-${DD}`;
+    let isoTime = `${HH}:${mm}:${ss}`;
     let isoTimeMs = `${isoTime}.${ms}`;
 
     let iso = `${isoDate}T${isoTimeMs}${tz}`;
 
     return {
+        input: date,
         date: d,
-        $t: d.getTime(),
-        $Y, $M, $D, $WD,
-        Y, M, D, WD, MM, YE, E, CE,
-        $h, $m, $s, $ms, $h12,
-        h, m, s, ms, h12, a, tz,
+        timestamp: d.getTime(),
+
+        year, month, day, weekDay,
+        Y, M, D, WD,
+        YY, MM, DD,
+        YE, E, CE, MMM,
+
+        hours, minutes, seconds, milliseconds, hours12,
+        H, m, s, ms, h, a, tz,
+        HH, mm, ss, hh,
+
         isoDate, isoTime, isoTimeMs, iso,
+        timezoneOffset: tzOffset,
     };
 }
