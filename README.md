@@ -39,7 +39,7 @@ formatDate(new Date(), '{YY}-{MM}-{DD} {HH}:{mm}:{ss}');
 | `{tz}` | Time zone |
 | `{WD}` | Week day abbreviation |
 | `{iso}` | Local time zone ISO date string |
-| `{isoDate}` | Date (= `{YY}-{MM}-{DD}`) |
+| `{isoDate}` | Date (= `{YYYY}-{MM}-{DD}`) |
 | `{isoTime}` | Time (= `{HH}:{mm}:{ss}`) |
 | `{isoTimeMs}` | Time with milliseconds |
 

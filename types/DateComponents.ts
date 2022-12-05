@@ -76,7 +76,7 @@ export type DateComponents = {
     WD: typeof weekDays[number];
     /** Local time zone ISO date string */
     iso: string;
-    /** Date (YY-MM-DD) */
+    /** Date (YYYY-MM-DD) */
     isoDate: string;
     /** Time (HH:mm:ss) */
     isoTime: string;

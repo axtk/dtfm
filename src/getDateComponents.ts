@@ -85,7 +85,7 @@ export function getDateComponents(date: DateValue, targetTimezone?: string): Dat
 
     let tz = `${tzSign === -1 ? '-' : '+'}${pad(tzHours, 2)}:${pad(tzMinutes, 2)}`;
 
-    let isoDate = `${YY}-${MM}-${DD}`;
+    let isoDate = `${YYYY}-${MM}-${DD}`;
     let isoTime = `${HH}:${mm}:${ss}`;
     let isoTimeMs = `${isoTime}.${ms}`;
 
