@@ -5,7 +5,7 @@
 -----
 
 ```js
-formatDate(new Date(), '{YY}-{MM}-{DD} {HH}:{mm}:{ss}');
+formatDate(new Date(), '{YYYY}-{MM}-{DD} {HH}:{mm}:{ss}');
 // = 2022-07-19 12:34:56
 ```
 
