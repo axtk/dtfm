@@ -13,12 +13,12 @@ export function formatDuration(duration: number) {
     let s = floor((absDuration - d*DAY - h*HOUR - m*MIN)/SEC);
     let ms = absDuration - d*DAY - h*HOUR - m*MIN - s*SEC;
 
-    let span = '';
+    let value = '';
 
-    span += d === 0 ? '' : `${d}d`;
-    span += span ? `${pad(h, 2)}h` : (h === 0 ? '' : `${h}h`);
-    span += span ? `${pad(m, 2)}'` : (m === 0 ? '' : `${m}'`);
-    span += `${span ? pad(s, 2) : s}.${pad(ms, 3)}"`;
+    value += d === 0 ? '' : `${d}d`;
+    value += value ? `${pad(h, 2)}h` : (h === 0 ? '' : `${h}h`);
+    value += value ? `${pad(m, 2)}'` : (m === 0 ? '' : `${m}'`);
+    value += `${value ? pad(s, 2) : s}.${pad(ms, 3)}"`;
 
-    return `${durationSign === -1 ? '-' : ''}${span}`;
+    return `${durationSign === -1 ? '-' : ''}${value}`;
 }
