@@ -1,5 +1,4 @@
 import type {DateValue} from './DateValue';
-import {weekDays, months} from '../src/const';
 
 export type DateComponents = {
     /** Original value */
@@ -31,7 +30,7 @@ export type DateComponents = {
     /** Month, zero-prefixed when shorter than 2 digits */
     MM: string;
     /** Month abbreviation */
-    MMM: typeof months[number];
+    MMM: string;
     /** Day */
     day: number;
     /** Day */
@@ -73,7 +72,7 @@ export type DateComponents = {
     /** Week day */
     weekDay: number;
     /** Week day abbreviation */
-    WD: typeof weekDays[number];
+    WD: string;
     /** Local time zone ISO date string */
     iso: string;
     /** Date (YYYY-MM-DD) */

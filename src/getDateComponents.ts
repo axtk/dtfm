@@ -4,7 +4,7 @@ import type {DateComponents} from '../types/DateComponents';
 import {isInvalidDate} from './isInvalidDate';
 import {getTimezone} from './getTimezone';
 import {getTimezoneOffset} from './getTimezoneOffset';
-import {weekDays, months, MIN} from './const';
+import {defaultWeekDays, defaultMonths, MIN} from './const';
 
 const {abs, floor, sign} = Math;
 
@@ -39,7 +39,7 @@ export function getDateComponents(date: DateValue, targetTimezone?: string): Dat
     let Y = String(year);
     let M = String(month);
     let D = String(day);
-    let WD = weekDays[weekDay];
+    let WD = defaultWeekDays[weekDay];
 
     let absYear = abs(year);
     let yearSign = sign(year) === -1 ? '-' : '';
@@ -50,7 +50,7 @@ export function getDateComponents(date: DateValue, targetTimezone?: string): Dat
 
     let YYYY = `${yearSign}${pad(absYear, 4)}`;
     let yy = pad(absYear % 100, 2);
-    let MMM = months[month - 1];
+    let MMM = defaultMonths[month - 1];
 
     let hours = d.getHours();
     let minutes = d.getMinutes();

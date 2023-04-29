@@ -5,10 +5,11 @@ export const DAY = 24*HOUR;
 
 export const INVALID_DATE_STRING = new Date('-').toString();
 
-export const weekDays =  [
+export const defaultWeekDays =  [
     'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat',
 ];
-export const months = [
+
+export const defaultMonths = [
     'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
     'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
 ];
