@@ -22,12 +22,12 @@
   ],
   "author": "axtk",
   "license": "ISC",
-  "devDependencies": {
-    "cross-env": "7.0.3",
-    "esbuild": "0.15.16",
-    "typescript": "4.9.3"
-  },
   "dependencies": {
-    "stfm": "0.0.6"
+    "stfm": "^0.0.7"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "esbuild": "^0.17.18",
+    "typescript": "^5.0.4"
   }
 }
