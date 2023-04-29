@@ -2,15 +2,14 @@
 
 *Locale-agnostic date formatting utilities*
 
------
+## Date formatting
 
-```js
+```ts
 formatDate(new Date(), '{YYYY}-{MM}-{DD} {HH}:{mm}:{ss}');
 // = 2022-07-19 12:34:56
 ```
 
-<details>
-<summary>List of placeholders</summary>
+### List of placeholders
 
 | Placeholder | Value |
 |-------------|-------|
@@ -43,19 +42,16 @@ formatDate(new Date(), '{YYYY}-{MM}-{DD} {HH}:{mm}:{ss}');
 | `{isoTime}` | Time (= `{HH}:{mm}:{ss}`) |
 | `{isoTimeMs}` | Time with milliseconds |
 
-Unformatted date components also available as placeholder values: `timestamp`, `year`, `month`, `day`, `hours`, `hours12` (12h-clock hours), `minutes`, `seconds`, `milliseconds`, `weekDay`, `timezoneOffset`, `input` (the first argument of the `formatDate()` call).
+The following unformatted date components are also available as placeholder values: `timestamp`, `year`, `month`, `day`, `hours`, `hours12` (12h-clock hours), `minutes`, `seconds`, `milliseconds`, `weekDay`, `timezoneOffset`, `input` (the first argument of the `formatDate()` call).
 
-</details>
+### Using external locale-specific formats
 
-<details>
-<summary>Using external locale-specific formats</summary>
-
-```js
+```ts
 formatDate(new Date(), customLocale.fullDate);
 // = þriðjudagur 19. júlí 2022
 ```
 
-```js
+```ts
 // custom-locale.js (outside the package)
 const customWeekDays = [
     'sunnudagur', 'mánudagur', 'þriðjudagur', 'miðvikudagur',
@@ -76,12 +72,10 @@ export const customLocale = {
     fullDate: customFullDateFormat,
 };
 ```
-</details>
 
-<details>
-<summary>Dynamic templates</summary>
+### Dynamic templates
 
-```js
+```ts
 let eraTemplate = ({ E }) => E === 'AD' ? '{E} {YE}' : '{YE} {E}';
 
 formatDate('2022-07-19', eraTemplate);
@@ -90,11 +84,10 @@ formatDate('2022-07-19', eraTemplate);
 formatDate(-62200000000000, eraTemplate);
 // = 3 BC
 ```
-</details>
 
------
+## Durations
 
-```js
+```ts
 formatDuration(123456);
 // = 2'03.456"
 ```
