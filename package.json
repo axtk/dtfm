@@ -23,7 +23,7 @@
   "author": "axtk",
   "license": "ISC",
   "dependencies": {
-    "stfm": "^0.0.7"
+    "stfm": "^0.0.8"
   },
   "devDependencies": {
     "cross-env": "^7.0.3",
