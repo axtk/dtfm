@@ -1,3 +1,4 @@
+/* eslint-disable max-params */
 import {fill} from 'stfm';
 import type {DateComponentKey} from '../types/DateComponentKey';
 import type {DateComponents} from '../types/DateComponents';
