@@ -4,7 +4,7 @@
 
 ## Date formatting
 
-```ts
+```js
 formatDate(new Date(), '{YYYY}-{MM}-{DD} {HH}:{mm}:{ss}');
 // = 2022-07-19 12:34:56
 ```
@@ -46,28 +46,44 @@ The following unformatted date components are also available as placeholder valu
 
 ### Using external locale-specific formats
 
-```ts
+```js
 formatDate(new Date(), customLocale.fullDate);
 // = þriðjudagur 19. júlí 2022
 ```
 
-```ts
+```js
 // custom-locale.js (outside the package)
 const customWeekDays = [
-    'sunnudagur', 'mánudagur', 'þriðjudagur', 'miðvikudagur',
-    'fimmtudagur', 'föstudagur', 'laugardagur',
+    'sunnudagur',
+    'mánudagur',
+    'þriðjudagur',
+    'miðvikudagur',
+    'fimmtudagur',
+    'föstudagur',
+    'laugardagur',
 ];
 const customMonths = [
-    'janúar', 'febrúar', 'mars', 'apríl', 'maí', 'júní',
-    'júlí', 'ágúst', 'september', 'október', 'nóvember', 'desember',
+    'janúar',
+    'febrúar',
+    'mars',
+    'apríl',
+    'maí',
+    'júní',
+    'júlí',
+    'ágúst',
+    'september',
+    'október',
+    'nóvember',
+    'desember',
 ];
 const customFullDateFormat = {
     template: '{WD} {D}. {MMM} {Y}',
     transform: {
-        WD: ({ weekDay }) => customWeekDays[weekDay],
-        MMM: ({ month }) => customMonths[month - 1],
+        WD: ({weekDay}) => customWeekDays[weekDay],
+        MMM: ({month}) => customMonths[month - 1],
     },
 };
+
 export const customLocale = {
     fullDate: customFullDateFormat,
 };
@@ -75,8 +91,8 @@ export const customLocale = {
 
 ### Dynamic templates
 
-```ts
-let eraTemplate = ({ E }) => E === 'AD' ? '{E} {YE}' : '{YE} {E}';
+```js
+let eraTemplate = ({E}) => E === 'AD' ? '{E} {YE}' : '{YE} {E}';
 
 formatDate('2022-07-19', eraTemplate);
 // = AD 2022
@@ -87,7 +103,7 @@ formatDate(-62200000000000, eraTemplate);
 
 ## Durations
 
-```ts
+```js
 formatDuration(123456);
 // = 2'03.456"
 ```

@@ -1,13 +1,16 @@
 import {fill} from 'stfm';
-import type {DateValue} from '../types/DateValue';
 import type {DateComponentKey} from '../types/DateComponentKey';
 import type {DateComponents} from '../types/DateComponents';
+import type {DateValue} from '../types/DateValue';
 import {INVALID_DATE_STRING} from './const';
-import {isInvalidDate} from './isInvalidDate';
 import {getDateComponents} from './getDateComponents';
+import {isInvalidDate} from './isInvalidDate';
 
 export type FormatDateTemplate = string | ((dateComponents: DateComponents) => string);
-export type FormatDateTransform = Partial<Record<DateComponentKey, (dateComponents: DateComponents) => unknown>>;
+
+export type FormatDateTransform = Partial<
+    Record<DateComponentKey, (dateComponents: DateComponents) => unknown>
+>;
 
 export type FormatDateOptions = {
     template: FormatDateTemplate;
