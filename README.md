@@ -1,3 +1,6 @@
+> [!WARNING]
+> It's [`@t8/date-format`](https://github.com/t8js/date-format) now.
+
 # dtfm
 
 *Locale-agnostic date formatting utilities*
